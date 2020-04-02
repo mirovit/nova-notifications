@@ -10,7 +10,17 @@
 
 Install via composer `composer require mirovit/nova-notifications`.
 
-Laravel will auto-register the Service Provider.
+Laravel will auto-register the Service Provider. You'll need to register the tool with Laravel Nova.
+
+```php
+    public function tools()
+    {
+        return [
+            // ...
+            \Mirovit\NovaNotifications\NovaNotifications::make(),
+        ];
+    }
+```
 
 Then publish the configuration file - `php artisan vendor:publish` and make sure the path to your user model is correct. Note that this will be the Echo style namespace, so if your User model is located at App\User, you need to pass App.User as value.
 
@@ -83,7 +93,7 @@ class Created extends Notification
             'level' => 'info',
             'created_at' => now()->toAtomString(),
             'route' => ['name' => 'detail', 'params' => ['resourceName' => 'users', 'resourceId' => $this->user->id]],
-//            'url' => '/resources/candidates/' . $this->candidate->id,
+//            'url' => '/resources/users/' . $this->user->id,
         ];
     }
 }
