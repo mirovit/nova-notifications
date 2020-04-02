@@ -107,19 +107,25 @@ Only title and created_at are required for the notification to be displayed.
 
 ## Demo
 
-- No notifications
+### No notifications
 ![No notifications](https://raw.githubusercontent.com/mirovit/nova-notifications/master/images/no-notifications.png)
-- No notifications opened
+
+### No notifications opened
 ![No notifications open](https://raw.githubusercontent.com/mirovit/nova-notifications/master/images/no-notifications-open.png)
-- Notifications count
+
+### Notifications count
 ![Notifications count](https://raw.githubusercontent.com/mirovit/nova-notifications/master/images/notification-buble.png)
-- Notification success
+
+### Notification success
 ![Notification success](https://raw.githubusercontent.com/mirovit/nova-notifications/master/images/notification-success.png)
-- Notification info
+
+### Notification info
 ![Notification info](https://raw.githubusercontent.com/mirovit/nova-notifications/master/images/notification-info.png)
-- Notification error
+
+### Notification error
 ![Notification error](https://raw.githubusercontent.com/mirovit/nova-notifications/master/images/notification-error.png)
-- Notifications open
+
+### Notifications open
 ![Notifications open](https://raw.githubusercontent.com/mirovit/nova-notifications/master/images/notifications-open.png)
 
 ## ToDos
