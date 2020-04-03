@@ -58,7 +58,7 @@
                     })
             },
             formatRouterLink: function (notification) {
-                if (notification.data.router) {
+                if (notification.data.route) {
                     return {name: notification.data.route.name, params: notification.data.route.params}
                 }
 
