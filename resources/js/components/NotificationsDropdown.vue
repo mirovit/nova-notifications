@@ -95,6 +95,8 @@
                 self.$toasted.show(notification.title, {
                     type: level,
                     keepOnHover: true,
+                    icon: notification.icon || null,
+                    iconPack: 'custom-class',
                     action: [{
                         text: self.__('Mark as Read'),
                         onClick: (e, toast) => {

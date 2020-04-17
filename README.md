@@ -124,8 +124,18 @@ Notification::make($title = null, $subtitle = null)
     ->error(string $value)
     // Set custom date for notification, defaults to current datetime
     ->createdAt(Carbon $value)
+    // Add icon classes to be applied, ex: fas fa-info
+    ->icon(string $value)
     ->toArray();
 ```
+
+## Icons
+In order to show the icons, you need to make sure they are imported in your project. You can use any icon font like [Font Awesome](https://fontawesome.com).
+
+Example usage of FA:
+In `layout.blade.php` add the CSS for FA.
+
+Then just add the`->icon()` method on your notification and specify the classes for rendering the icon `fas fa-info`.
 
 ## Demo
 
@@ -155,5 +165,5 @@ Notification::make($title = null, $subtitle = null)
 - [x] Add translations
 - [ ] Add docs for customizing the Vue layout
 - [x] Allow for external links in notifications
-- [ ] Add support for icons
+- [x] Add support for icons
 - [ ] Actions customization
