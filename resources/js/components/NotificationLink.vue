@@ -7,7 +7,7 @@
                 target="_blank"
                 :class="style"
         >
-            {{ slot }}
+            <slot></slot>
         </a>
         <router-link
                 v-else
@@ -15,7 +15,7 @@
                 :to="href"
                 :class="style"
         >
-            {{ slot }}
+            <slot></slot>
         </router-link>
     </div>
 </template>
