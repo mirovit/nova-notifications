@@ -8,9 +8,9 @@ php:
 
 sudo: false
 
-addons:
-  code_climate:
-    repo_token: 4d7548ab7836ec0d46e360e26325d66831856751457539a46cf126a30ca086e5
+env:
+  global:
+    - CC_TEST_REPORTER_ID=4d7548ab7836ec0d46e360e26325d66831856751457539a46cf126a30ca086e5
 
 cache:
   directories:
@@ -22,8 +22,13 @@ before_install:
 install:
   - composer update --no-interaction --prefer-lowest
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
   - vendor/bin/phpunit tests
 
 after_script:
-  - vendor/bin/test-reporter
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
