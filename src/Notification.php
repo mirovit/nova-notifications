@@ -120,6 +120,12 @@ class Notification implements NotificationContract, Arrayable
         return $this;
     }
 
+    public function icon(string $value): Notification
+    {
+        $this->notification['icon'] = $value;
+        return $this;
+    }
+
     public function toArray()
     {
         return $this->notification;
