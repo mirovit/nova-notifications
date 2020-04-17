@@ -130,7 +130,7 @@ Only title and created_at are required for the notification to be displayed.
 
 ## ToDos
 
-- [ ] Add translations
+- [x] Add translations
 - [ ] Add docs for customizing the Vue layout
 - [ ] Allow for external links in notifications
 - [ ] Add support for icons
