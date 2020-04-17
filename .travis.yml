@@ -23,7 +23,7 @@ install:
   - composer update --no-interaction --prefer-lowest
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit tests
 
 after_script:
   - vendor/bin/test-reporter
