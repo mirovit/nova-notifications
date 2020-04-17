@@ -5,9 +5,6 @@ namespace Mirovit\NovaNotifications;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;
 
-/**
- * @codeCoverageIgnore
- */
 class NovaNotifications extends Tool
 {
     /**

@@ -8,9 +8,6 @@ use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
 use Mirovit\NovaNotifications\Http\Middleware\Authorize;
 
-/**
- * @codeCoverageIgnore
- */
 class NovaNotificationsServiceProvider extends ServiceProvider
 {
     /**

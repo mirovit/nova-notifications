@@ -5,9 +5,6 @@ namespace Mirovit\NovaNotifications\Http\Middleware;
 use Laravel\Nova\Nova;
 use Mirovit\NovaNotifications\NovaNotifications;
 
-/**
- * @codeCoverageIgnore
- */
 class Authorize
 {
     /**

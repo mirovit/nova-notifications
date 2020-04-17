@@ -13,6 +13,11 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory>src/</directory>
+            <exclude>
+                <file>src/NovaNotifications.php</file>
+                <file>src/NovaNotificationsServiceProvider.php</file>
+                <file>src/Http/Middleware/Authorize.php</file>
+            </exclude>
         </whitelist>
     </filter>
 
