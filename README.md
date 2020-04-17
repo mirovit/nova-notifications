@@ -87,23 +87,45 @@ class Created extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            'title' => 'A new user was created. ,
-            'subtitle' => 'There is a new user in the system - ' . $this->user->name . '!',
-            'level' => 'info',
-            'created_at' => now()->toAtomString(),
-            'route' => ['name' => 'detail', 'params' => ['resourceName' => 'users', 'resourceId' => $this->user->id]],
-//            'url' => '/resources/users/' . $this->user->id,
-        ];
+        return \Mirovit\NovaNotifications\Notification::make()
+            ->info('A new user was created.')
+            ->subtitle('There is a new user in the system - ' . $this->user->name . '!')
+            ->routeDetail('users', $this->user->id)
+            ->toArray();
+
     }
 }
 
 ```
 
-Supported levels are `info`, `success` and `error`.
-You can add a link to an internal resource by using eiter the route key, passing the parameters in the example above or use a url.
+## Available methods
 
-Only title and created_at are required for the notification to be displayed.
+
+```php
+Notification::make($title = null, $subtitle = null)
+    // Sets title
+    ->title(string $value)
+    // Sets subtitle
+    ->subtitle(string $subtitle)
+    // Link and route work similarly. Route has precedence over link, if you define both on an instance. You should generally use a one of them.
+    ->link(string $url, bool $external = false)
+    // Route to internal resource
+    ->route(string $name, string $resourceName, $resourceId = null)
+    // Helper methods for resource routing
+    ->routeIndex(string $resourceName)
+    ->routeCreate(string $resourceName)
+    ->routeEdit(string $resourceName, $resourceId)
+    ->routeDetail(string $resourceName, $resourceId)
+    // Notification level - info, success or errro
+    ->level(string $value)
+    // Helpers to set title and level with one call
+    ->info(string $value)
+    ->success(string $value)
+    ->error(string $value)
+    // Set custom date for notification, defaults to current datetime
+    ->createdAt(Carbon $value)
+    ->toArray();
+```
 
 ## Demo
 
@@ -132,6 +154,6 @@ Only title and created_at are required for the notification to be displayed.
 
 - [x] Add translations
 - [ ] Add docs for customizing the Vue layout
-- [ ] Allow for external links in notifications
+- [x] Allow for external links in notifications
 - [ ] Add support for icons
 - [ ] Actions customization
