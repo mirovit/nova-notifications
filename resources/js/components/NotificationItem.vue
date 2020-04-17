@@ -5,7 +5,7 @@
                 @click.native="markAsRead()"
                 :href="formatRouterLink(notification)"
                 :external="notification.data.external"
-                :style="'no-underline text-black flex-1'"
+                :classList="['no-underline', 'text-black', 'flex-1']"
             >
                 <slot name="content">
                     <h4 class="no-underline dim text-primary font-bold pb-2">{{ notification.data.title }}</h4>

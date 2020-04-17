@@ -2,10 +2,10 @@
     <div>
         <a
                 v-if="external"
-                @click.native="$emit('click')"
+                @click="$emit('click')"
                 :href="href"
                 target="_blank"
-                :class="style"
+                :class="classList"
         >
             <slot></slot>
         </a>
@@ -13,7 +13,7 @@
                 v-else
                 @click.native="$emit('click')"
                 :to="href"
-                :class="style"
+                :class="classList"
         >
             <slot></slot>
         </router-link>
@@ -30,8 +30,8 @@
             href: {
                 type: String
             },
-            style: {
-                type: String
+            classList: {
+                type: Array
             }
         },
     }
