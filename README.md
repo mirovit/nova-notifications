@@ -1,5 +1,7 @@
 # Nova Notifications
 
+[![Build Status](https://travis-ci.org/mirovit/nova-notifications.svg?branch=master)](https://travis-ci.org/mirovit/nova-notifications)
+
 ## Prerequisites
 - Laravel Nova app
 - Laravel Broadcasting configured
