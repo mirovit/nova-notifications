@@ -6,6 +6,12 @@ php:
   - 7.3
   - 7.4
 
+sudo: false
+
+addons:
+  code_climate:
+    repo_token: 4d7548ab7836ec0d46e360e26325d66831856751457539a46cf126a30ca086e5
+
 cache:
   directories:
     - $HOME/.composer/cache
@@ -18,3 +24,6 @@ install:
 
 script:
   - vendor/bin/phpunit tests
+
+after_script:
+  - vendor/bin/test-reporter
