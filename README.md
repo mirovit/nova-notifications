@@ -1,7 +1,6 @@
 # Nova Notifications
 
 [![Build Status](https://travis-ci.org/mirovit/nova-notifications.svg?branch=master)](https://travis-ci.org/mirovit/nova-notifications)
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/b8a180684b5d64b2beac/maintainability)](https://codeclimate.com/github/mirovit/nova-notifications/maintainability)
 
 ## Prerequisites
