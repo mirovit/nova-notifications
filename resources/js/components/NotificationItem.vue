@@ -1,10 +1,11 @@
 <template>
     <div class="block no-underline text-90 hover:bg-30 p-3">
         <div class="flex justify-between">
-            <router-link
+            <notification-link
                 @click.native="markAsRead()"
-                :to="formatRouterLink(notification)"
-                class="no-underline text-black flex-1"
+                :href="formatRouterLink(notification)"
+                :external="notification.data.external"
+                :style="'no-underline text-black flex-1'"
             >
                 <slot name="content">
                     <h4 class="no-underline dim text-primary font-bold pb-2">{{ notification.data.title }}</h4>
@@ -20,7 +21,7 @@
                         {{ notification.data.created_at | fromNow }}
                     </p>
                 </slot>
-            </router-link>
+            </notification-link>
 
             <button
                 v-if="notification.read_at === null"
@@ -60,6 +61,10 @@
             formatRouterLink: function (notification) {
                 if (notification.data.route) {
                     return {name: notification.data.route.name, params: notification.data.route.params}
+                }
+
+                if (notification.data.external) {
+                    return notification.data.url || '#'
                 }
 
                 return {path: notification.data.url || '#'}
