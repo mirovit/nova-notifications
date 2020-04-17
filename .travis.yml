@@ -16,7 +16,8 @@ before_install:
   - composer selfupdate
 
 install:
-  - composer install --no-interaction --prefer-lowest
+  - composer install --no-interaction
+  - composer update--prefer-lowest
 
 script:
   - vendor/bin/phpunit
