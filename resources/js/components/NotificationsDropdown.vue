@@ -54,17 +54,17 @@
             }
         },
         mounted() {
-            const that = this
+            const self = this
 
-            this.loadNotifications(function (response) {
+            self.loadNotifications(function (response) {
                 console.log(Nova.config.user_model_namespace)
                 Echo.private(Nova.config.user_model_namespace + '.' + response.data.user_id)
-                    .notification(that.notificationReceived)
+                    .notification(self.notificationReceived)
             })
 
             Nova.$on('notification-read', function (e) {
-                that.notifications[e.notification.id] = e.notification
-                that.count--;
+                self.notifications[e.notification.id] = e.notification
+                self.count--;
             })
         },
         methods: {
@@ -82,9 +82,9 @@
                     })
             },
             notificationReceived: function (notification) {
-                this.loadNotifications()
+                const self = this
 
-                const that = this
+                self.loadNotifications()
 
                 let level = 'info'
                 const levels = ['success', 'info', 'error']
@@ -93,17 +93,17 @@
                     level = notification.level
                 }
 
-                this.$toasted.show(notification.title, {
+                self.$toasted.show(notification.title, {
                     type: level,
                     keepOnHover: true,
                     action: [{
-                        text: this.__('Mark as Read'),
+                        text: self.__('Mark as Read'),
                         onClick: (e, toast) => {
-                            that.$refs['notification-' + notification.id][0].markAsRead()
+                            self.$refs['notification-' + notification.id][0].markAsRead()
                             toast.goAway(0);
                         }
                     }, {
-                        text: this.__('Cancel'),
+                        text: self.__('Cancel'),
                         onClick: (e, toast) => {
                             toast.goAway(0);
                         }
@@ -113,7 +113,7 @@
             markAllAsRead: function () {
                 axios
                     .patch('/nova-vendor/nova-notifications')
-                    .then(response => {
+                    .then(() => {
                         this.notifications = []
                         this.count = 0
                     })
