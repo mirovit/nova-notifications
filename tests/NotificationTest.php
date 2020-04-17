@@ -38,6 +38,42 @@ class NotificationTest extends TestCase
     /**
     * @test
     */
+    public function it_sets_title_when_new_static_instance_created()
+    {
+        $title = 'Title';
+
+        $notification = Notification::make($title);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(2, $notification);
+        $this->assertArrayHasKey('title', $notification);
+        $this->assertSame($title, $notification['title']);
+    }
+
+    /**
+    * @test
+    */
+    public function it_sets_subtitle_when_new_static_instance_created()
+    {
+        $subtitle = 'Sub Title';
+
+        $notification = Notification::make(null, $subtitle);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(2, $notification);
+        $this->assertArrayHasKey('subtitle', $notification);
+        $this->assertSame($subtitle, $notification['subtitle']);
+    }
+
+    /**
+    * @test
+    */
     public function it_sets_title()
     {
         $title = 'Test Title';
