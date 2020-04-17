@@ -324,7 +324,7 @@ class NotificationTest extends TestCase
     {
         $notification = Notification::make()->toArray();
 
-        $this->assertIsArray($notification);
+        $this->assertTrue(is_array($notification));
         $this->assertCount(1, $notification);
     }
 
