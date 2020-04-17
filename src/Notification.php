@@ -25,7 +25,7 @@ class Notification implements NotificationContract, Arrayable
         $this->createdAt(Carbon::now());
     }
 
-    public static function make(string $title = null, string $subtitle = null): NotificationContract
+    public static function make(string $title = null, string $subtitle = null): Notification
     {
         return new static($title, $subtitle);
     }
