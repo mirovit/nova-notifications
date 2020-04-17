@@ -78,7 +78,7 @@ class Notification implements NotificationContract, Arrayable
         return $this->route('edit', $resourceName, $resourceId);
     }
 
-    public function routedDtail(string $resourceName, $resourceId): Notification
+    public function routedDetail(string $resourceName, $resourceId): Notification
     {
         return $this->route('detail', $resourceName, $resourceId);
     }
