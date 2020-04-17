@@ -14,10 +14,15 @@ class Notification implements NotificationContract, Arrayable
 
     public function __construct($title = null, $subtitle = null)
     {
-        $this
-            ->info($title)
-            ->subtitle($subtitle)
-            ->createdAt(Carbon::now());
+        if (!empty($title)) {
+            $this->title($title);
+        }
+
+        if (!empty($subtitle)) {
+            $this->subtitle($subtitle);
+        }
+        
+        $this->createdAt(Carbon::now());
     }
 
     public static function make(string $title = null, string $subtitle = null): NotificationContract
