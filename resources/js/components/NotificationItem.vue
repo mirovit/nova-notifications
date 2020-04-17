@@ -28,7 +28,7 @@
                 class="btn"
             >
                 <slot name="action">
-                    mark read
+                    {{ __('mark read') }}
                 </slot>
             </button>
         </div>

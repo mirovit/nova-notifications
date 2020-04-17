@@ -19,14 +19,14 @@
         <dropdown-menu slot="menu" width="600" direction="rtl">
             <loading-view :loading="isLoading">
                 <div class="flex justify-between bg-40 text-90 p-4">
-                    <h3>Notifications</h3>
+                    <h3>{{ __('Notifications') }}</h3>
 
                     <button v-if="count !== 0" class="btn" @click="markAllAsRead()">
-                        mark all as read
+                        {{ __('mark all as read') }}
                     </button>
                 </div>
                 <p v-if="count === 0" class="block p-3">
-                    No new notifications.
+                    {{ __('No new notifications') }}
                 </p>
                 <scroll-wrap v-else height="350">
                     <slot>
@@ -97,13 +97,13 @@
                     type: level,
                     keepOnHover: true,
                     action: [{
-                        text: 'Mark as Read',
+                        text: this.__('Mark as Read'),
                         onClick: (e, toast) => {
                             that.$refs['notification-' + notification.id][0].markAsRead()
                             toast.goAway(0);
                         }
                     }, {
-                        text: 'Cancel',
+                        text: this.__('Cancel'),
                         onClick: (e, toast) => {
                             toast.goAway(0);
                         }

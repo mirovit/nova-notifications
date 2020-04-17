@@ -18,9 +18,17 @@ class NovaNotificationsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-notifications');
+
         $this->publishes([
             __DIR__.'/../config/notifications.php' => config_path('nova-notifications.php'),
         ]);
+
+
+		$this->publishes([
+			__DIR__.'/../resources/lang/' => resource_path('lang/vendor/nova-notifications'),
+		]);
+
+		$this->registerTranslations();
 
         $this->app->booted(function () {
             $this->routes();
@@ -57,7 +65,19 @@ class NovaNotificationsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/notifications.php', 'nova-notifications'
+            __DIR__ . '/../config/notifications.php', 'nova-notifications'
         );
+    }
+
+	protected function registerTranslations()
+	{
+		$locale = app()->getLocale();
+
+		Nova::translations(__DIR__.'/../resources/lang/' . $locale . '.json');
+		Nova::translations(resource_path('lang/vendor/nova-notifications/' . $locale . '.json'));
+
+		$this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'NovaNotifications');
+		$this->loadJSONTranslationsFrom(__DIR__.'/../resources/lang');
+		$this->loadJSONTranslationsFrom(resource_path('lang/vendor/nova-notifications'));
     }
 }
