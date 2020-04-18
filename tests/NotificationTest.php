@@ -376,6 +376,36 @@ class NotificationTest extends TestCase
         $this->assertSame(['info', 'success', 'error'], Notification::LEVELS);
     }
 
+    /**
+     * @test
+     */
+    public function it_hides_show_mark_as_read()
+    {
+        $notification = Notification::make()->showMarkAsRead(false);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(3, $notification);
+        $this->assertFalse($notification['show_mark_as_read']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_hides_cancel()
+    {
+        $notification = Notification::make()->showCancel(false);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(3, $notification);
+        $this->assertFalse($notification['show_cancel']);
+    }
+
     protected function routeWithoutIdetifier($notification, $name, $resourceName)
     {
         $this->assertInstanceOf(Notification::class, $notification);

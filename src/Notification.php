@@ -131,13 +131,13 @@ class Notification implements NotificationContract, Arrayable
 
     public function showMarkAsRead(bool $value = true): Notification
     {
-        $this->notification['showMarkAsRead'] = $value;
+        $this->notification['show_mark_as_read'] = $value;
         return $this;
     }
 
     public function showCancel(bool $value = true): Notification
     {
-        $this->notification['showCancel'] = $value;
+        $this->notification['show_cancel'] = $value;
         return $this;
     }
 
