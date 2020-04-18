@@ -92,23 +92,37 @@
                     level = notification.level
                 }
 
+                const markAsRead = {
+                    text: self.__('Mark as Read'),
+                    onClick: (e, toast) => {
+                        self.$refs['notification-' + notification.id][0].markAsRead()
+                        toast.goAway(0);
+                    }
+                }
+
+                const cancel = {
+                    text: self.__('Cancel'),
+                    onClick: (e, toast) => {
+                        toast.goAway(0);
+                    }
+                }
+
+                let actions = []
+
+                if (notification.show_mark_as_read) {
+                    actions.push(markAsRead)
+                }
+
+                if (notification.show_cancel) {
+                    actions.push(cancel)
+                }
+
                 self.$toasted.show(notification.title, {
                     type: level,
                     keepOnHover: true,
                     icon: notification.icon || null,
                     iconPack: 'custom-class',
-                    action: [{
-                        text: self.__('Mark as Read'),
-                        onClick: (e, toast) => {
-                            self.$refs['notification-' + notification.id][0].markAsRead()
-                            toast.goAway(0);
-                        }
-                    }, {
-                        text: self.__('Cancel'),
-                        onClick: (e, toast) => {
-                            toast.goAway(0);
-                        }
-                    }],
+                    action: actions,
                 })
             },
             markAllAsRead: function () {
