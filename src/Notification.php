@@ -9,8 +9,11 @@ use Mirovit\NovaNotifications\Contracts\Notification as NotificationContract;
 class Notification implements NotificationContract, Arrayable
 {
     const LEVELS = ['info', 'success', 'error'];
-    
-    protected $notification = [];
+
+    protected $notification = [
+        'show_mark_as_read' => true,
+        'show_cancel' => true,
+    ];
 
     public function __construct($title = null, $subtitle = null)
     {
@@ -21,7 +24,7 @@ class Notification implements NotificationContract, Arrayable
         if (!empty($subtitle)) {
             $this->subtitle($subtitle);
         }
-        
+
         $this->createdAt(Carbon::now());
     }
 
@@ -123,6 +126,18 @@ class Notification implements NotificationContract, Arrayable
     public function icon(string $value): Notification
     {
         $this->notification['icon'] = $value;
+        return $this;
+    }
+
+    public function showMarkAsRead(bool $value = true): Notification
+    {
+        $this->notification['showMarkAsRead'] = $value;
+        return $this;
+    }
+
+    public function showCancel(bool $value = true): Notification
+    {
+        $this->notification['showCancel'] = $value;
         return $this;
     }
 

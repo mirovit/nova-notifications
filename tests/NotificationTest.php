@@ -23,7 +23,7 @@ class NotificationTest extends TestCase
     /**
     * @test
     */
-    public function it_has_only_created_at_on_instantiation()
+    public function it_has_default_values_on_instantiation()
     {
         $notification = Notification::make();
 
@@ -31,8 +31,12 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(1, $notification);
+        $this->assertCount(3, $notification);
         $this->assertArrayHasKey('created_at', $notification);
+        $this->assertArrayHasKey('show_mark_as_read', $notification);
+        $this->assertArrayHasKey('show_cancel', $notification);
+        $this->assertTrue($notification['show_mark_as_read']);
+        $this->assertTrue($notification['show_cancel']);
     }
 
     /**
@@ -48,7 +52,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('title', $notification);
         $this->assertSame($title, $notification['title']);
     }
@@ -66,7 +70,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('subtitle', $notification);
         $this->assertSame($subtitle, $notification['subtitle']);
     }
@@ -84,7 +88,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('title', $notification);
         $this->assertSame($title, $notification['title']);
     }
@@ -102,7 +106,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('subtitle', $notification);
         $this->assertSame($subtitle, $notification['subtitle']);
     }
@@ -120,7 +124,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(3, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('url', $notification);
         $this->assertArrayHasKey('external', $notification);
         $this->assertSame($link, $notification['url']);
@@ -140,7 +144,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(3, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('url', $notification);
         $this->assertArrayHasKey('external', $notification);
         $this->assertSame($link, $notification['url']);
@@ -161,7 +165,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('route', $notification);
         $this->assertCount(2, $notification['route']);
         $this->assertCount(1, $notification['route']['params']);
@@ -184,7 +188,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('route', $notification);
         $this->assertCount(2, $notification['route']);
         $this->assertCount(2, $notification['route']['params']);
@@ -256,7 +260,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('level', $notification);
         $this->assertSame($level, $notification['level']);
     }
@@ -276,7 +280,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('level', $notification);
         $this->assertNotSame($level, $notification['level']);
         $this->assertSame('info', $notification['level']);
@@ -341,14 +345,13 @@ class NotificationTest extends TestCase
     {
         $icon = 'some icon-class';
 
-        $notification = Notification::make()
-            ->icon($icon);
+        $notification = Notification::make()->icon($icon);
 
         $this->assertInstanceOf(Notification::class, $notification);
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('icon', $notification);
         $this->assertSame($icon, $notification['icon']);
     }
@@ -361,7 +364,7 @@ class NotificationTest extends TestCase
         $notification = Notification::make()->toArray();
 
         $this->assertTrue(is_array($notification));
-        $this->assertCount(1, $notification);
+        $this->assertCount(3, $notification);
     }
 
     /**
@@ -379,7 +382,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
 
         $this->assertArrayHasKey('route', $notification);
 
@@ -396,7 +399,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(2, $notification);
+        $this->assertCount(4, $notification);
 
         $this->assertArrayHasKey('route', $notification);
 
@@ -414,7 +417,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(3, $notification);
+        $this->assertCount(5, $notification);
 
         $this->assertArrayHasKey('title', $notification);
         $this->assertArrayHasKey('level', $notification);

@@ -130,6 +130,8 @@ Notification::make($title = null, $subtitle = null)
     ->createdAt(Carbon $value)
     // Add icon classes to be applied, ex: fas fa-info
     ->icon(string $value)
+    ->showMarkAsRead(bool $value = true)
+    ->showCancel(bool $value = true)
     ->toArray();
 ```
 
