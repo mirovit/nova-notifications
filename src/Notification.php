@@ -10,10 +10,7 @@ class Notification implements NotificationContract, Arrayable
 {
     const LEVELS = ['info', 'success', 'error'];
 
-    protected $notification = [
-        'show_mark_as_read' => true,
-        'show_cancel' => true,
-    ];
+    protected $notification = [];
 
     public function __construct($title = null, $subtitle = null)
     {
@@ -25,7 +22,10 @@ class Notification implements NotificationContract, Arrayable
             $this->subtitle($subtitle);
         }
 
-        $this->createdAt(Carbon::now());
+        $this
+            ->showMarkAsRead()
+            ->showCancel()
+            ->createdAt(Carbon::now());
     }
 
     public static function make(string $title = null, string $subtitle = null): Notification
@@ -131,13 +131,13 @@ class Notification implements NotificationContract, Arrayable
 
     public function showMarkAsRead(bool $value = true): Notification
     {
-        $this->notification['showMarkAsRead'] = $value;
+        $this->notification['show_mark_as_read'] = $value;
         return $this;
     }
 
     public function showCancel(bool $value = true): Notification
     {
-        $this->notification['showCancel'] = $value;
+        $this->notification['show_cancel'] = $value;
         return $this;
     }
 
