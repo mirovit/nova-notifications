@@ -26,14 +26,43 @@ Laravel will auto-register the Service Provider. You'll need to register the too
     }
 ```
 
-Then publish the configuration file - `php artisan vendor:publish` and make sure the path to your user model is correct. Note that this will be the Echo style namespace, so if your User model is located at App\User, you need to pass App.User as value.
-
 Make sure you have the user channel authenticated in `routes/channels.php` or where you store this logic:
 ```php
-Broadcast::channel('App.User.{id}', function ($user, $id) {
+Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int)$user->id === (int)$id;
 });
 ```
+
+Laravel Echo is not bundled with Nova by defult, so you will need to setup that for your front end. To do that follow these steps below:
+
+- Install [Echo](https://laravel.com/docs/7.x/broadcasting#installing-laravel-echo)
+- `npm install`
+- create an admin.js file in resources/js
+```js
+import Echo from 'laravel-echo';
+
+// Sample instance with Pusher
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true
+});
+```
+- add to your webpack.mix.js
+```js
+mix.js('resources/js/admin.js', 'public/js');
+```
+- add in your Nova layout.blade.php
+```html
+// ...
+<script src="{{ mix('app.js', 'vendor/nova') }}"></script>
+<script src="{{ mix('js/admin.js') }}"></script>
+```
+
+Additionally, the package assumes that models are namespaced as App\Models, if that is not correct for your project, the authentication between the front & back end will not work and notifications will not show without refreshing the page. Go to the [Configuration](https://github.com/mirovit/nova-notifications#configuration) section to see how to fix this.
 
 The last step is to publish manually Nova's layout file if you haven't done so. 
 `cp vendor/laravel/nova/resources/views/layout.blade.php resources/views/vendor/nova/layout.blade.php`
