@@ -4,6 +4,16 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b8a180684b5d64b2beac/maintainability)](https://codeclimate.com/github/mirovit/nova-notifications/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b8a180684b5d64b2beac/test_coverage)](https://codeclimate.com/github/mirovit/nova-notifications/test_coverage)
 
+## Quick Links
+* [Prerequisites](https://github.com/mirovit/nova-notifications#prerequisites)
+* [Installation](https://github.com/mirovit/nova-notifications#installation)
+* [Usage](https://github.com/mirovit/nova-notifications#usage)
+* [Available methods](https://github.com/mirovit/nova-notifications#available-methods)
+* [Icons](https://github.com/mirovit/nova-notifications#icons)
+* [Configuration](https://github.com/mirovit/nova-notifications#configuration)
+* [Demo](https://github.com/mirovit/nova-notifications#demo)
+* [ToDos](https://github.com/mirovit/nova-notifications#todos)
+
 ## Prerequisites
 - Laravel Nova app
 - Laravel Broadcasting configured
