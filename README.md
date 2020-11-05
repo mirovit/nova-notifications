@@ -172,7 +172,7 @@ In `layout.blade.php` add the CSS for FA.
 
 Then just add the`->icon()` method on your notification and specify the classes for rendering the icon `fas fa-info`.
 
-# Configuration
+## Configuration
 There is an optional config file published by the package. If you use a different convention for model namespaces or you want to override the default controllers provided by the package, then you'll need to publish the configuration into your project.
 
 Note that the default model namespace that the package assumes is App\Models, so if you're using another namespace, this will have to be adjusted for the authentication between the API and the front end.
