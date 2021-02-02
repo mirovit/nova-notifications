@@ -11,6 +11,7 @@
 * [Available methods](https://github.com/mirovit/nova-notifications#available-methods)
 * [Icons](https://github.com/mirovit/nova-notifications#icons)
 * [Configuration](https://github.com/mirovit/nova-notifications#configuration)
+* [Translation](https://github.com/mirovit/nova-notifications#translation)
 * [Demo](https://github.com/mirovit/nova-notifications#demo)
 * [ToDos](https://github.com/mirovit/nova-notifications#todos)
 
@@ -188,6 +189,30 @@ There is an optional config file published by the package. If you use a differen
 Note that the default model namespace that the package assumes is App\Models, so if you're using another namespace, this will have to be adjusted for the authentication between the API and the front end.
 
 `php artisan vendor:publish` and select the number corresponding to Mirovit\NovaNotifications\NovaNotificationsServiceProvider or publish all.
+
+## Translation
+The package has been translated into English, if you require additional translations, you can add them as documented in the Laravel Nova docs.
+
+An item that has come up a few times is that the difference for humans is displayed only in English, regardless of the application locale. You need to set the moment.js locale in your application to the appropriate locale, this is not a responsibility of this package.
+
+Locate your layout file - `resources/views/vendor/nova/layout.blade.php`:
+
+Find:
+```html
+<!-- Build Nova Instance -->
+<script>
+    window.Nova = new CreateNova(config)
+</script>
+```
+
+and replace with:
+```html
+<!-- Build Nova Instance -->
+<script>
+    window.Nova = new CreateNova(config)
+    moment.locale('es-es') // this can come from a config setting, just an example of how to set it
+</script>
+```
 
 ## Demo
 
