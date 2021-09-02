@@ -15,7 +15,7 @@ class NovaNotifications extends Tool
     public function boot()
     {
         Nova::script('notifications', __DIR__.'/../dist/js/tool.js');
-//        Nova::style('notifications', __DIR__.'/../dist/css/tool.css');
+        Nova::style('notifications', __DIR__.'/../dist/css/tool.css');
     }
 
     /**
