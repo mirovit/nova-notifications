@@ -160,7 +160,8 @@ Notification::make($title = null, $subtitle = null)
     ->routeCreate(string $resourceName)
     ->routeEdit(string $resourceName, $resourceId)
     ->routeDetail(string $resourceName, $resourceId)
-    // Notification level - info, success or errro
+    // Notification level - info, success or error
+    
     ->level(string $value)
     // Helpers to set title and level with one call
     ->info(string $value)
