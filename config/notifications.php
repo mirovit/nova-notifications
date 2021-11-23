@@ -9,4 +9,7 @@ return [
         'mark_as_read'              => \Mirovit\NovaNotifications\Http\Controllers\MarkAsReadController::class,
         'mark_all_as_read'          => \Mirovit\NovaNotifications\Http\Controllers\MarkAllAsReadController::class,
     ],
+
+    'play_sound' => false,
+    'default_sound' => 'http://soundbible.com/mp3/glass_ping-Go445-1207030150.mp3',
 ];

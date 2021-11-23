@@ -141,6 +141,12 @@ class Notification implements NotificationContract, Arrayable
         return $this;
     }
 
+    public function sound(string $value): Notification
+    {
+        $this->notification['sound'] = $value;
+        return $this;
+    }
+
     public function toArray()
     {
         return $this->notification;

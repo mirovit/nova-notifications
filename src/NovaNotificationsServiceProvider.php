@@ -37,6 +37,8 @@ class NovaNotificationsServiceProvider extends ServiceProvider
         Nova::serving(function (ServingNova $event) {
             Nova::provideToScript([
                 'user_model_namespace' => config('nova-notifications.user_model'),
+                'play_sound' => config('nova-notifications.play_sound'),
+                'default_sound' => config('nova-notifications.default_sound'),
             ]);
         });
     }
