@@ -173,6 +173,12 @@ Notification::make($title = null, $subtitle = null)
     ->icon(string $value)
     ->showMarkAsRead(bool $value = true)
     ->showCancel(bool $value = true)
+    // URL to the sound that the notification should make
+    ->sound('https://url-to-a-sound-file')
+    // Whether to show the toasted popup notification
+    ->displayToasted(bool $value = true)
+    // Alias to invoke the displayToasted() with false
+    ->hideToasted()
     ->toArray();
 ```
 

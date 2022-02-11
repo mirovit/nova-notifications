@@ -25,6 +25,7 @@ class Notification implements NotificationContract, Arrayable
         $this
             ->showMarkAsRead()
             ->showCancel()
+            ->displayToasted()
             ->createdAt(Carbon::now());
     }
 
@@ -147,7 +148,18 @@ class Notification implements NotificationContract, Arrayable
         return $this;
     }
 
-    public function toArray()
+    public function displayToasted(bool $value = true): Notification
+    {
+        $this->notification['display_toasted'] = $value;
+        return $this;
+    }
+
+    public function hideToasted(): Notification
+    {
+        return $this->displayToasted(false);
+    }
+
+    public function toArray(): array
     {
         return $this->notification;
     }
