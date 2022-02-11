@@ -12,4 +12,6 @@ return [
 
     'play_sound' => false,
     'default_sound' => 'http://soundbible.com/mp3/glass_ping-Go445-1207030150.mp3',
+
+    'toasted_enabled' => true,
 ];

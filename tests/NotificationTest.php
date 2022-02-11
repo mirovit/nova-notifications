@@ -31,7 +31,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(3, $notification);
+        $this->assertCount(4, $notification);
         $this->assertArrayHasKey('created_at', $notification);
         $this->assertArrayHasKey('show_mark_as_read', $notification);
         $this->assertArrayHasKey('show_cancel', $notification);
@@ -52,7 +52,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('title', $notification);
         $this->assertSame($title, $notification['title']);
     }
@@ -70,7 +70,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('subtitle', $notification);
         $this->assertSame($subtitle, $notification['subtitle']);
     }
@@ -88,7 +88,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('title', $notification);
         $this->assertSame($title, $notification['title']);
     }
@@ -106,7 +106,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('subtitle', $notification);
         $this->assertSame($subtitle, $notification['subtitle']);
     }
@@ -124,7 +124,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('url', $notification);
         $this->assertArrayHasKey('external', $notification);
         $this->assertSame($link, $notification['url']);
@@ -144,7 +144,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('url', $notification);
         $this->assertArrayHasKey('external', $notification);
         $this->assertSame($link, $notification['url']);
@@ -165,7 +165,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('route', $notification);
         $this->assertCount(2, $notification['route']);
         $this->assertCount(1, $notification['route']['params']);
@@ -188,7 +188,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('route', $notification);
         $this->assertCount(2, $notification['route']);
         $this->assertCount(2, $notification['route']['params']);
@@ -260,7 +260,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('level', $notification);
         $this->assertSame($level, $notification['level']);
     }
@@ -280,7 +280,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('level', $notification);
         $this->assertNotSame($level, $notification['level']);
         $this->assertSame('info', $notification['level']);
@@ -351,7 +351,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('icon', $notification);
         $this->assertSame($icon, $notification['icon']);
     }
@@ -387,7 +387,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(3, $notification);
+        $this->assertCount(4, $notification);
         $this->assertFalse($notification['show_mark_as_read']);
     }
 
@@ -402,8 +402,55 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(3, $notification);
+        $this->assertCount(4, $notification);
         $this->assertFalse($notification['show_cancel']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_set_notification_sound()
+    {
+        $sound = 'https://notifications.sound/sound.mp3';
+
+        $notification = Notification::make()->sound($sound);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(4, $notification);
+        $this->assertSame($sound, $notification['sound']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_has_toasts_enabled_by_default()
+    {
+        $notification = Notification::make();
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(4, $notification);
+        $this->assertTrue($notification['display_toasted']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_disable_toasts()
+    {
+        $notification = Notification::make()->hideToasted();
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(4, $notification);
+        $this->assertFalse($notification['display_toasted']);
     }
 
     protected function routeWithoutIdetifier($notification, $name, $resourceName)

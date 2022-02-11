@@ -39,6 +39,7 @@ class NovaNotificationsServiceProvider extends ServiceProvider
                 'user_model_namespace' => config('nova-notifications.user_model'),
                 'play_sound' => config('nova-notifications.play_sound'),
                 'default_sound' => config('nova-notifications.default_sound'),
+                'toasted_enabled' => config('nova-notifications.toasted_enabled'),
             ]);
         });
     }

@@ -122,13 +122,17 @@
                     actions.push(cancel)
                 }
 
-                self.$toasted.show(notification.title, {
+                const showToast = !!(notification.display_toasted || Nova.config.toasted_enabled)
+
+                if (showToast) {
+                  self.$toasted.show(notification.title, {
                     type: level,
                     keepOnHover: true,
                     icon: notification.icon || null,
                     iconPack: 'custom-class',
                     action: actions,
-                })
+                  })
+                }
 
                 this.playSound(notification.sound)
             },
