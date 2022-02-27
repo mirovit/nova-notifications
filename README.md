@@ -78,7 +78,23 @@ Additionally, the package assumes that models are namespaced as App\Models, if t
 The last step is to publish manually Nova's layout file if you haven't done so. 
 `cp vendor/laravel/nova/resources/views/layout.blade.php resources/views/vendor/nova/layout.blade.php`
 
-Then place the partial view that displays the bell icon in the nav bar, somewhere aroud the user partial from nova - `@include('nova-notifications::dropdown')`.
+Then place the partial view that displays the bell icon in the nav bar:
+
+Find in `views/vendor/nova/layout.blade.php`:
+```php
+<dropdown class="ml-auto h-9 flex items-center dropdown-right">
+    @include('nova::partials.user')
+</dropdown>
+```
+
+Replace with:
+```php
+@include('nova-notifications::dropdown')
+
+<dropdown class="ml-8 h-9 flex items-center dropdown-right">
+    @include('nova::partials.user')
+</dropdown>
+```
 
 ## Usage
 
