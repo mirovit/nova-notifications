@@ -25,6 +25,7 @@ class Notification implements NotificationContract, Arrayable
         $this
             ->showMarkAsRead()
             ->showCancel()
+            ->playSound()
             ->displayToasted()
             ->createdAt(Carbon::now());
     }
