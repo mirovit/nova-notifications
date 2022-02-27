@@ -134,7 +134,9 @@
                   })
                 }
 
-                this.playSound(notification.sound)
+                if(notification.play_sound) {
+                    this.playSound(notification.sound)
+                }
             },
             markAllAsRead: function () {
                 axios

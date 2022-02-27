@@ -175,6 +175,8 @@ Notification::make($title = null, $subtitle = null)
     ->showCancel(bool $value = true)
     // URL to the sound that the notification should make
     ->sound('https://url-to-a-sound-file')
+    // If `play_sound` is set to true in your config, every notification will play the default sound. You can disable the sound per notification here.
+    ->playSound(bool $value = true)
     // Whether to show the toasted popup notification
     ->displayToasted(bool $value = true)
     // Alias to invoke the displayToasted() with false
