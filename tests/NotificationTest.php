@@ -31,10 +31,11 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertArrayHasKey('created_at', $notification);
         $this->assertArrayHasKey('show_mark_as_read', $notification);
         $this->assertArrayHasKey('show_cancel', $notification);
+        $this->assertArrayHasKey('play_sound', $notification);
         $this->assertTrue($notification['show_mark_as_read']);
         $this->assertTrue($notification['show_cancel']);
     }
@@ -52,7 +53,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('title', $notification);
         $this->assertSame($title, $notification['title']);
     }
@@ -70,7 +71,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('subtitle', $notification);
         $this->assertSame($subtitle, $notification['subtitle']);
     }
@@ -88,7 +89,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('title', $notification);
         $this->assertSame($title, $notification['title']);
     }
@@ -106,7 +107,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('subtitle', $notification);
         $this->assertSame($subtitle, $notification['subtitle']);
     }
@@ -124,7 +125,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(6, $notification);
+        $this->assertCount(7, $notification);
         $this->assertArrayHasKey('url', $notification);
         $this->assertArrayHasKey('external', $notification);
         $this->assertSame($link, $notification['url']);
@@ -144,7 +145,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(6, $notification);
+        $this->assertCount(7, $notification);
         $this->assertArrayHasKey('url', $notification);
         $this->assertArrayHasKey('external', $notification);
         $this->assertSame($link, $notification['url']);
@@ -165,7 +166,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('route', $notification);
         $this->assertCount(2, $notification['route']);
         $this->assertCount(1, $notification['route']['params']);
@@ -188,7 +189,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('route', $notification);
         $this->assertCount(2, $notification['route']);
         $this->assertCount(2, $notification['route']['params']);
@@ -260,7 +261,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('level', $notification);
         $this->assertSame($level, $notification['level']);
     }
@@ -280,7 +281,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('level', $notification);
         $this->assertNotSame($level, $notification['level']);
         $this->assertSame('info', $notification['level']);
@@ -351,7 +352,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(6, $notification);
         $this->assertArrayHasKey('icon', $notification);
         $this->assertSame($icon, $notification['icon']);
     }
@@ -364,7 +365,7 @@ class NotificationTest extends TestCase
         $notification = Notification::make()->toArray();
 
         $this->assertTrue(is_array($notification));
-        $this->assertCount(3, $notification);
+        $this->assertCount(5, $notification);
     }
 
     /**
@@ -387,7 +388,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertFalse($notification['show_mark_as_read']);
     }
 
@@ -402,7 +403,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertFalse($notification['show_cancel']);
     }
 
@@ -419,8 +420,39 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(6, $notification);
         $this->assertSame($sound, $notification['sound']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_setting_play_sound_to_false()
+    {
+
+        $notification = Notification::make()->playSound(false);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(5, $notification);
+        $this->assertFalse($notification['play_sound']);
+    }
+
+        /**
+     * @test
+     */
+    public function it_allows_setting_play_sound_to_true()
+    {
+        $notification = Notification::make()->playSound(true);
+
+        $this->assertInstanceOf(Notification::class, $notification);
+
+        $notification = $notification->toArray();
+
+        $this->assertCount(5, $notification);
+        $this->assertTrue($notification['play_sound']);
     }
 
     /**
@@ -434,7 +466,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertTrue($notification['display_toasted']);
     }
 
@@ -449,7 +481,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(5, $notification);
         $this->assertFalse($notification['display_toasted']);
     }
 
@@ -459,7 +491,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(6, $notification);
 
         $this->assertArrayHasKey('route', $notification);
 
@@ -476,7 +508,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(4, $notification);
+        $this->assertCount(6, $notification);
 
         $this->assertArrayHasKey('route', $notification);
 
@@ -494,7 +526,7 @@ class NotificationTest extends TestCase
 
         $notification = $notification->toArray();
 
-        $this->assertCount(5, $notification);
+        $this->assertCount(7, $notification);
 
         $this->assertArrayHasKey('title', $notification);
         $this->assertArrayHasKey('level', $notification);
