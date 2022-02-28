@@ -440,7 +440,7 @@ class NotificationTest extends TestCase
         $this->assertFalse($notification['play_sound']);
     }
 
-        /**
+    /**
      * @test
      */
     public function it_allows_setting_play_sound_to_true()
