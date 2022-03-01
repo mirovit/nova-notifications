@@ -25,6 +25,7 @@ class Notification implements NotificationContract, Arrayable
         $this
             ->showMarkAsRead()
             ->showCancel()
+            ->playSound()
             ->displayToasted()
             ->createdAt(Carbon::now());
     }
@@ -145,6 +146,12 @@ class Notification implements NotificationContract, Arrayable
     public function sound(string $value): Notification
     {
         $this->notification['sound'] = $value;
+        return $this;
+    }
+    
+    public function playSound(bool $value = true): Notification
+    {
+        $this->notification['play_sound'] = $value;
         return $this;
     }
 
